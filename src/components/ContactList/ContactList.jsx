@@ -7,7 +7,6 @@ import { deleteContact } from 'redux/operations';
 const ContactList = () => {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
-  console.log(contacts)
 
   const dispatch = useDispatch();
 
@@ -16,7 +15,6 @@ const ContactList = () => {
   );
 
   const onRemoveContact = id => {
-    console.log(id)
     dispatch(deleteContact(id))};
 
 
