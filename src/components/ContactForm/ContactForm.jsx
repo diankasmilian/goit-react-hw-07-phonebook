@@ -1,16 +1,12 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/operations';
-import { getContacts } from 'redux/selectors';
-import { useSelector } from 'react-redux';
 import { Form } from './ContactForm.styled';
+import { useAddContactMutation } from 'redux/contactSlice';
 
-const ContactForm = () => {
+const ContactForm = ({contacts}) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const [addContact] = useAddContactMutation()
 
   const handleInputChange = e => {
     const { name, value } = e.target;
@@ -40,7 +36,7 @@ const ContactForm = () => {
 
     sameName
       ? alert(`${name} or ${number} is already in contacts`)
-      : dispatch(addContact({name, number}));
+      : addContact({name, number});
 
     reset();
   };
